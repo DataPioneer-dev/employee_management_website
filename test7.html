@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var currentDate = new Date();
+
+            var day = currentDate.getDate();
+            var month = currentDate.getMonth() + 1;
+            var year = currentDate.getFullYear();
+            if (parseInt(month)>=1 && parseInt(month)<=9) {
+                if (parseInt(day)>=1 && parseInt(day)<=9) {
+                    var formattedDate = '0' + day + '-' + '0' + month + '-' + year;
+                } else {
+                    var formattedDate = day + '-' + '0' + month + '-' + year;
+                }
+            } else {
+                if (parseInt(day)>=1 && parseInt(day)<=9) {
+                    var formattedDate = '0' + day + '-' + month + '-' + year;
+                } else {
+                    var formattedDate = day + '-' + month + '-' + year;
+                }
+            }
+
+            document.getElementById('currentdate').textContent = formattedDate.trim();
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .attestation {
+            width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .infos-left {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            direction: ltr; 
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .infos-right {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            margin-left: 60px;
+            margin-top: 5px;
+            direction: ltr;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .multiline-text {
+            line-height: 1.5;
+        }
+
+        .header {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 40px;
+            margin-bottom: 80px;
+            font-size: 30px;
+            direction: ltr;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title {
+            border: 2px solid #ccc; /* Bordure */
+            border-radius: 10px; /* Rayon des coins (en pixels ou en pourcentage) */
+            padding: 10px;
+            width: 400px;
+        }
+
+        .body {
+            font-family: Arial, sans-serif;
+            line-height: 1;
+            font-size: 20px;
+            margin-right: 40px;
+            direction: ltr;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="attestation">
+        <p class = "infos-left">
+            <strong class="multiline-text">ROYAUME DU MAROC<br>MINISTERE DE L’INTERIEUR<br>WILAYA DE LA REGION DE L’ORIENTAL<br>REGION DE L’ORIENTAL<br>Direction Générale des Services<br>Direction des Affaires Administratives et Juridiques<br>Division des Ressources Humaines<br>et de l’Ingénierie de la Formation<br>Service de Gestion des Affaires du Personnel<br>N° : . . . .. . . . ./2023</strong>
+        </p>
+        <div class = "infos-right">
+            <p><strong>Oujda le </strong><span id="currentdate"></span></p>
+        </div>
+        <div class="header">
+            <strong class="title">attestation de travail</strong>
+        </div>
+        <div class="body">
+            <p>Le Président du Conseil de la Région de l’Oriental atteste que :</p>
+            <p style="margin-left: 40px;">Prénom et Nom : <span style="margin-left: 30px;">firstName secondName </span></p>
+            <p style="margin-left: 40px;">N° C.N.I : <span style="margin-left: 80px;">CarteNational</span></p>
+            <p style="margin-left: 40px;">Corps : <span style="margin-left: 90px;">Crp</span></p>
+            <p style="margin-left: 40px;">Grade : <span style="margin-left: 90px;">Gd</span></p>
+            <p style="margin-left: 40px;">N° Matricule dans le système «Aujour» : <span style="margin-left: 30px;">MatrAujour</span></p>
+            <p>est en fonction à l’administration du Conseil de la Région de l’Oriental. </p>
+            <p>La présente attestation est délivrée à l’intéressé(e) pour servir et valoir ce que de droit.</p>
+        </div>
+    </div>
+</body>
+</html>

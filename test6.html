@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var currentDate = new Date();
+
+            var day = currentDate.getDate();
+            var month = currentDate.getMonth() + 1;
+            var year = currentDate.getFullYear();
+            if (parseInt(month)>=1 && parseInt(month)<=9) {
+                if (parseInt(day)>=1 && parseInt(day)<=9) {
+                    var formattedDate = year + '-0' + month + '-0' + day;
+                } else {
+                    var formattedDate = year + '-0' + month + '-' + day;
+                }
+            } else {
+                if (parseInt(day)>=1 && parseInt(day)<=9) {
+                    var formattedDate = year + '-' + month + '-0' + day;
+                } else {
+                    var formattedDate = year + '-' + month + '-' + day;
+                }
+            }
+
+            document.getElementById('currentdate').textContent = formattedDate.trim();
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .attestation {
+            width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .infos-right {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            direction: rtl; 
+            display: flex;
+            align-items: center;
+            justify-content: right;
+        }
+
+        .infos-left {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            margin-left: 60px;
+            margin-top: 5px;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .multiline-text {
+            line-height: 1.5;
+        }
+
+        .header {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 40px;
+            margin-bottom: 80px;
+            font-size: 40px;
+            direction: rtl;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title {
+            border: 2px solid #ccc; /* Bordure */
+            border-radius: 10px; /* Rayon des coins (en pixels ou en pourcentage) */
+            padding: 10px;
+            width: 300px;
+        }
+
+        .body {
+            font-family: Arial, sans-serif;
+            line-height: 1;
+            font-size: 25px;
+            margin-right: 40px;
+            direction: rtl;
+        }
+
+        .input1 {
+            margin-right: 30px;
+        }
+
+        .input2 {
+            margin-right: 80px;
+        }
+
+        .input3 {
+            margin-right: 90px;
+        }
+
+        .input4 {
+            margin-right: 90px;
+        }
+
+        .input5 {
+            margin-right: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="attestation">
+        <p class = "infos-right">
+            <strong class="multiline-text">المملكة المغربية<br>وزارة الداخلية<br>ولاية جهة الشرق<br>جهة الشرق<br>المديرية العامة للمصالح<br>مديرية الشؤون الادارية والقانونية<br>قسم الموارد البشرية وهندسة التكوين<br>مصلحة تدبير شؤون الموظفين<br>عدد............../2023</strong>
+        </p>
+        <div class = "infos-left">
+            <p><strong> وجدة في : </strong><span id="currentdate"></span></p>
+        </div>
+        <div class="header">
+            <strong class="title">شهادة العمل</strong>
+        </div>
+        <div class="body">
+            <p>يشهد رئيس مجلس جهة الشرق بأن السيد(ة) : </p>
+            <p style="margin-right: 40px;">الاسـم الشخصي والعائلي : <span style="margin-right: 30px;">Prenom Nom </span></p>
+            <p style="margin-right: 40px;">رقـم ب. و. ت : <span style="margin-right: 80px;">CIN</span></p>
+            <p style="margin-right: 40px;">الإطــــــــار : <span style="margin-right: 90px;">Corps</span></p>
+            <p style="margin-right: 40px;">الدرجة : <span style="margin-right: 90px;">Grade</span></p>
+            <p style="margin-right: 40px;">رقـم التسجيل في منظومة أجور : <span style="margin-right: 30px;">Aujour</span></p>
+            <p id="male_or_female"></p>
+            <p>وقد سلمت هذه الشهادة للمعني(ة) بالأمر قصد الإدلاء بها عند الحاجة.</p>
+        </div>
+    </div>
+</body>
+</html>

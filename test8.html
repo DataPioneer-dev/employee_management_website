@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function formattedDate(date) {
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                    if (parseInt(month)>=1 && parseInt(month)<=9) {
+                        if (parseInt(day)>=1 && parseInt(day)<=9) {
+                            var formattedDate = '0' + day + '-' + '0' + month + '-' + year;
+                        } else {
+                            var formattedDate = day + '-' + '0' + month + '-' + year;
+                        }
+                    } else {
+                        if (parseInt(day)>=1 && parseInt(day)<=9) {
+                            var formattedDate = '0' + day + '-' + month + '-' + year;
+                        } else {
+                            var formattedDate = day + '-' + month + '-' + year;
+                        }
+                    }
+                    return formattedDate;
+            }
+
+            var currentDate = new Date();
+            var date_depart = new Date(date_de_depart);
+            var date_retour = new Date(date_de_retour);
+            document.getElementById('currentdate').textContent = formattedDate(currentDate).trim();
+            document.getElementById('date-depart').textContent = formattedDate(date_depart).trim();
+            document.getElementById('date-arrivee').textContent = formattedDate(date_retour).trim();
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var number = nbr_jours_1;
+            var frenchUnits = ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf"];
+            var frenchNumbers = [
+                "onze",
+                "douze",
+                "treize",
+                "quatorze",
+                "quinze",
+                "seize",
+                "dix-sept",
+                "dix-huit",
+                "dix-neuf"
+            ];
+            var frenchTens = ["", "dix", "vingt", "trente", "quarante", "cinquante", "soixante", "soixante-dix", "quatre-vingt", "quatre-vingt-dix"];
+            var frenchHundreds = ["", "cent", "deux-cents", "trois-cents", "quatre-cents", "cinq-cents", "six-cents", "sept-cents", "huit-cents", "neuf-cents"];
+    
+            if (number === 0) {
+                return frenchUnits[0];
+            }
+    
+            var words = "";
+            var hundred = "";
+            var Ten = "";
+            var Unit = "";
+            var temoin = false;
+            var dayElement = document.getElementById("nombre_de_jours");
+    
+            if (number >= 100) {
+                var hundreds = Math.floor(number / 100);
+                if (number % 100 === 0) {
+                    hundred = frenchHundreds[hundreds];
+                } else {
+                    hundred = frenchHundreds[hundreds] + " ";
+                }
+                number %= 100;
+            }
+    
+            if (number >= 20 || number === 10) {
+                var tens = Math.floor(number / 10);
+                Ten = frenchTens[tens] + " ";
+                number %= 10;
+                if (number !== 0) {
+                    temoin = true;
+                } 
+            }
+    
+            if (number < 20 && number > 10) {
+                Ten = frenchNumbers[number % 10 - 1] + " ";
+            }
+    
+            if (number > 0 && number <= 10) {
+                if (number === 1 && temoin) {
+                    Unit = "et " + frenchUnits[number];
+                } else {
+                    Unit = frenchUnits[number];
+                }
+            }
+    
+            words = hundred + Ten + Unit;
+            dayElement.textContent = words.trim();
+        });
+    </script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var number = nbr_jours_2; 
+
+            var numberElement = document.getElementById("day");
+            if (number === 1) {
+                numberElement.textContent = " jour ouvrable";
+            } else {
+                numberElement.textContent = "jours ouvrables";
+            }
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .attestation {
+            width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .infos-left {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            direction: ltr; 
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .infos-right {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            margin-left: 60px;
+            margin-top: 5px;
+            direction: ltr;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .multiline-text {
+            line-height: 1.5;
+        }
+
+        .header {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 40px;
+            margin-bottom: 50px;
+            font-size: 25px;
+            direction: ltr;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: underline;
+        }
+
+        .ligne1{
+            font-family: Arial, sans-serif;
+            line-height: 1;
+            font-size: 20px;
+            margin-right: 100px;
+            direction: ltr;
+        }
+
+        .custom-list {
+            list-style: none;
+            padding: 0;
+            margin-right: 30px;
+            direction: ltr;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+        }
+
+        .custom-list li {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .custom-list li::before {
+            content: "\25C6";
+            font-size: 25px;
+            margin-right: 5px;
+            margin-left: 10px;
+        }
+        
+        .chapter {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            direction: ltr; 
+            margin-right: 30px;
+            display: flex;
+            align-items: flex-start;
+            text-decoration: underline
+        }
+
+        .decision {
+            margin-right: 30px;
+            direction: ltr;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .indent {
+            margin-left: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="attestation">
+        <p class = "infos-left">
+            <strong class="multiline-text">ROYAUME DU MAROC<br>MINISTERE DE L’INTERIEUR<br>WILAYA DE LA REGION DE L’ORIENTAL<br>REGION DE L’ORIENTAL<br>Direction Générale des Services<br>Direction des Affaires Administratives et Juridiques<br>Division des Ressources Humaines<br>et de l’Ingénierie de la Formation<br>Service de Gestion des Affaires du Personnel<br>N° : . . . .. . . . ./2023</strong>
+        </p>
+        <div class = "infos-right">
+            <p><strong>Oujda le </strong><span id="currentdate"></span></p>
+        </div>
+        <div class="header">
+            <strong class="title">Décision</strong>
+        </div>
+        <p class="ligne1">
+            <strong>Le Président du Conseil de la Région de l’Oriental,</strong>                
+        </p>
+        <ul class="custom-list">
+            <li>Vu le Dahir <strong>n° 1.58.008</strong> du <strong>04 Chaaban 1377 (24 février 1958)</strong>, portant statut général de la fonction publique tel qu’il a été complété ou modifié par la loi n° 50-05, du 29 Rajab 1432 (18 février 2011) (en particulier les <strong>articles 40 et 41</strong>).</li>
+            <li>Vu le Dahir <strong>n° 1.15.83</strong> du  <strong>07 Juillet 2015 </strong>portant promulgation de la loi n° 111/14 relative à l’organisation des régions.</li>
+            <li>Vu la demande présentée par <strong>Civilite_1. Prenom_1 Nom_1, Grade</strong> au sein de l’Administration de la Région de l’Oriental.</li>
+        </ul>
+        <p class="header">
+            <strong>Décide</strong>
+        </p>
+        <p class="decision">
+            <strong>Article n°1</strong> : Un congé administratif d’une durée de <strong id="nombre_de_jours"></strong> <strong id="day"></strong> <strong>( nbr_jours_3 )</strong> est accordé à <strong> Civilite_2 Prenom_2 Nom_2</strong>, au titre de l'année <strong>year-1 </strong>à compter du <strong id="date-depart"></strong> au <strong id="date-arrivee"></strong>
+        </p>
+        <p class="decision">
+            <strong>Article n°2</strong> : L’intéressé est autorisé de quitter le territoire national dans la limite de son congé administratif.
+        </p>
+    </div>
+</body>
+</html>

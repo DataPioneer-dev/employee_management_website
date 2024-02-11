@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var number = nbr_jours1;
+            var arabicUnits = ["صفر", "واحد", "اثنان", "ثلاثة", "أربعة", "خمسة", "ستة", "سبعة", "ثمانية", "تسعة"];
+            var arabicNumbers = [
+                "أحد عشر",
+                "اثنا عشر",
+                "ثلاثة عشر",
+                "أربعة عشر",
+                "خمسة عشر",
+                "ستة عشر",
+                "سبعة عشر",
+                "ثمانية عشر",
+                "تسعة عشر"
+            ];
+            var arabicTens = ["", "عشرة", "عشرون", "ثلاثون", "أربعون", "خمسون", "ستون", "سبعون", "ثمانون", "تسعون"];
+            var arabicHundreds = ["", "مئة", "مئتان", "ثلاثمئة", "أربعمئة", "خمسمئة", "ستمئة", "سبعمئة", "ثمانمئة", "تسعمئة"];
+
+            if (number === 0) {
+                return arabicWords[0];
+            }
+
+            var words = "";
+            var hundred = "";
+            var Ten = "";
+            var Unit = "";
+            var isNotUnits = false;
+            var dayElement = document.getElementById("nombre_de_jours");
+
+            if (number >= 100) {
+                var hundreds = Math.floor(number / 100);
+                if (number % 100 === 0) {
+                    hundred = arabicHundreds[hundreds];
+                } else {
+                    hundred = arabicHundreds[hundreds] + " و";
+                }
+                number %= 100;
+            }
+
+            if (number >= 20 || number === 10) {
+                var tens = Math.floor(number / 10);
+                Ten = arabicTens[tens] + " ";
+                number %= 10;
+                isNotUnits = true;
+            }
+
+            if (number < 20 && number > 10) {
+                Ten = arabicNumbers[number % 10 -1] + " ";
+            }
+
+            if (number > 0 && number < 11 ) {
+                if (isNotUnits) {
+                    Unit = arabicUnits[number] + " و";
+                } else {
+                    if (number === 1 || number === 2) {
+                        Unit = '';
+                    } else {
+                        Unit = arabicUnits[number];
+                    }
+                }
+            }
+
+            words = hundred + Unit + Ten;
+            dayElement.textContent = words.trim();
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var number = nbr_jours2; 
+
+            var numberElement = document.getElementById("day");
+            if (number === 1) {
+                numberElement.textContent = "يوم";
+            } else if (number === 2) {
+                numberElement.textContent = "يومين";
+            } else if (number > 2 && number <= 10) {
+                numberElement.textContent = " أيام";
+            } else {
+                numberElement.textContent = " يوما";
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var dateString = Date_de_depart;
+            var dateParts = dateString.split('-'); // Sépare la chaîne de caractères en parties : jour, mois, année
+            var day = dateParts[0];
+            var month = dateParts[1];
+            var year = dateParts[2];
+            var dateElement = document.getElementById("date");
+
+            var arabicMonths = [
+                "",
+                "يناير",
+                "فبراير",
+                "مارس",
+                "أبريل",
+                "ماي",
+                "يونيو",
+                "يوليوز",
+                "غشت",
+                "شتنبر",
+                "أكتوبر",
+                "نونبر",
+                "دجنبر"
+            ];
+
+            function getArabicMonthName(index) {
+                if (index >= 1 && index <= 12) {
+                    return arabicMonths[index];
+                }
+                return "";
+            }
+
+            var arabicMonth = getArabicMonthName(parseInt(month));
+
+            dateElement.textContent = year + ' ' + arabicMonth + ' ' + day;
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var currentDate = new Date();
+
+            var day = currentDate.getDate();
+            var month = currentDate.getMonth() + 1;
+            var year = currentDate.getFullYear();
+            if (parseInt(month)>=1 && parseInt(month)<=9) {
+                if (parseInt(day)>=1 && parseInt(day)<=9) {
+                    var formattedDate = year + '-0' + month + '-0' + day;
+                } else {
+                    var formattedDate = year + '-0' + month + '-' + day;
+                }
+            } else {
+                if (parseInt(day)>=1 && parseInt(day)<=9) {
+                    var formattedDate = year + '-' + month + '-0' + day;
+                } else {
+                    var formattedDate = year + '-' + month + '-' + day;
+                }
+            }
+
+            document.getElementById('currentdate').textContent = formattedDate.trim();
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .attestation {
+            width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .infos-right {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            direction: rtl; 
+            display: flex;
+            align-items: center;
+            justify-content: right;
+        }
+
+        .infos-left {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            margin-left: 60px;
+            margin-top: 5px;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .multiline-text {
+            line-height: 1.5;
+        }
+
+        .header {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 28px;
+            direction: rtl;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: underline;
+        }
+
+        .ligne1{
+            font-family: Arial, sans-serif;
+            line-height: 1;
+            font-size: 20px;
+            margin-right: 100px;
+            direction: rtl;
+        }
+
+        .custom-list {
+            list-style: none;
+            padding: 0;
+            margin-right: 30px;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+        }
+
+        .custom-list li {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .custom-list li::before {
+            content: "\25C6";
+            font-size: 25px;
+            margin-right: 5px;
+            margin-left: 10px;
+        }
+        
+        .chapter {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            direction: rtl; /* Align text from left to right */
+            margin-right: 30px;
+            display: flex;
+            align-items: flex-start;
+            text-decoration: underline
+        }
+
+        .decision {
+            margin-right: 30px;
+            direction: rtl;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="attestation">
+        <p class = "infos-right">
+            <strong class="multiline-text">المملكة المغربية<br>وزارة الداخلية<br>ولاية جهة الشرق<br>جهة الشرق<br>المديرية العامة للمصالح<br>مديرية الشؤون الادارية والقانونية<br>قسم الموارد البشرية وهندسة التكوين<br>مصلحة تدبير شؤون الموظفين<br>عدد............../2023</strong>
+        </p>
+        <div class = "infos-left">
+            <p><strong> وجدة في : </strong><span id="currentdate"></span></p>
+        </div>
+        <p class="header">
+            <strong>قرار</strong>
+        </p>
+        <p class="ligne1">
+            <strong>ان رئيس مجلس جهة الشرق</strong>                
+        </p>
+        <ul class="custom-list">
+            <li>بمقتضى الظهير الشريف <strong>1-رقم 008-58</strong> الصادر في  <strong>04 شعبان 1377 (24 فبراير 1958)</strong> بمثابة النظام الأساسي العام للوظيفة العمومية حسبما وقع تغييره وتتميمه بالقانون رقم 50-05 الصادر بتنفيذه الظهير الشريف رقم 1.11.87 الصادر في 29 رجب 1432 (18  فبراير 2011) (لاسيما <strong>الفصلين 40 و41</strong> منه)</li>
+            <li>بمقتضى الظهير الشريف <strong>رقم 1.63.038 الصادر في 05 شوال 1382 (فاتح مارس 1963)</strong> بشأن النظام الأساسي الخصوصي للمتصرفين بوزارة الداخلية</li>
+            <li>بناء على القانون التنظيمي <strong>رقم 14-111</strong> المتعلق بالجهات والصادر بتنفيذه الظهير الشريف <strong>رقم 83-15-1 بتاريخ 7 يوليوز 2015</strong> </li>
+            <li>بناء على الأنظمة الأساسية الخاصة بالأطر المشتركة بين الوزارات</li>
+            <li>بناء على المرسوم <strong>رقم 2.77.738 الصادر في 13 شوال 1397 (27 شتنبر 1977)</strong> بمثابة النظام الأساسي الخاص بموظفي الجماعات المحلية حسبما وقع تغييره تتميمه</li>
+            <li>بناء على المنشور <strong>رقم 1.05 و ع بتاريخ 05 يونيو 2011</strong> المتعلق بالرخص السنوية</li>
+        </ul>
+        <p class="header">
+            <strong>يقرر</strong>
+        </p>
+        <p class="chapter">
+            <strong>فصل فريد :</strong>
+        </p>
+        <p class="decision">
+            تمنح رخصة ادارية سنوية مدتها  <strong id="nombre_de_jours"></strong> <strong id="day"></strong> ( nbr_jours3 ) عمل عن سنة  <strong> year-1 </strong> ابتداء من <strong id="date"></strong> للسيد(ة) Prenom_arabe Nom_arabe موظف(ة) بادارة جهة الشرق
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+.status-cell {
+        padding: 5px; /* Adjust the padding value as per your needs */
+        font-weight: bold;
+    }
+
+.yellow {
+        background-color: yellow;
+        color: darkblue;
+    }
+
+.green {
+        background-color: green;
+        color: white;
+    }
+
+.red {
+        background-color: red;
+        color: white;
+    }
+    
+.gradient-cell {
+        font-weight: bold;
+    }
+    
+.operation-column {
+
+    background-color: #d9edf7;
+    color: #31708f;
+    border-color: #bce8f1;
+}
+
+.pg-row-checkbox {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 16px; /* Adjust width */
+  height: 16px; /* Adjust height */
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 10px; /* Adjust top position */
+  width: 5px; /* Adjust width */
+  height: 5px; /* Adjust height */
+  border-radius: 50%;
+  background: black; /* Change background color to black */
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 3px; /* Adjust left position */
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 3px; /* Adjust left position */
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 10px; /* Adjust left position */
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 17px; /* Adjust left position */
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(7px, 0); /* Adjust translation */
+  }
+}
